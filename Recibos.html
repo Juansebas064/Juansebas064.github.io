@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>Recibos Tati</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./Recibo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <h1 class="title">
+      <img src="./Recibo.svg" alt="" width="60px">
+      Pago de recibos
+    </h1>
+    <ul class="tabs">
+      <li class="tab active-tab" id="energy-tab" onclick="changeTab(event)">⚡Energía</li>
+      <li class="tab" id="water-tab" onclick="changeTab(event)">💧Agua</li>
+    </ul>
+  </nav>
+  <section class="energy">
+    <p class="description">
+      Aquí se calcula el valor a pagar del recibo de la energía.
+    </p>
+    <h2 class="how-to">¿Cómo son hechos los cálculos?</h2>
+    <ul>
+      <li>Consumo de energía</li>
+      <li>La tercera parte (1/3) del valor del aseo</li>
+      <li>La mitad (1/2) del valor del alumbrado</li>
+    </ul>
+    <!-- <hr> -->
+    <div id="energy-inputs">
+      <div class="input-container">
+        <label for="energy-previous">Consumo anterior</label>
+        <input step="0.01" type="number" name="energy-previous" id="e-p">
+      </div>
+
+      <div class="input-container">
+        <label for="energy-current">Consumo actual</label>
+        <input step="0.01" type="number" name="energy-current" id="e-c">
+      </div>
+
+      <div class="input-container">
+        <label for="energy-price">Valor consumo kWh</label>
+        <input step="0.01" type="number" name="energy-price" id="v-kwh">
+      </div>
+
+      <div class="input-container">
+        <label for="cleaning-value">Valor aseo</label>
+        <input step="0.01" type="number" name="cleaning-value" id="c-v">
+      </div>
+
+      <div class="input-container">
+        <label for="lightning-value">Valor alumbrado</label>
+        <input step="0.01" type="number" name="lightning-value" id="l-v">
+      </div>
+
+      <h1 id="energy-result" hidden></h1>
+
+      <button onclick="calculateEnergy(event)" class="calculate-button">Calcular</button>
+      <button id="clear-energy" onclick="clearAll(event)" class="clear-button">Borrar todo</button>
+    </div>
+  </section>
+
+  <section class="water" hidden>
+    <p class="description">
+      Aquí se calcula el valor a pagar del recibo del agua.
+    </p>
+    <h2 class="how-to">¿Cómo son hechos los cálculos?</h2>
+    <ul>
+      <li>Consumo de agua</li>
+      <li>La mitad (1/2) del cargo fijo de acueducto</li>
+      <li>La mitad (1/2) del valor fijo del alcantarillado</li>
+    </ul>
+    <!-- <hr> -->
+    <div id="water-inputs">
+      <div class="input-container">
+        <label for="water-previous">Consumo anterior</label>
+        <input step="0.01" type="number" name="water-previous" id="w-p">
+      </div>
+
+      <div class="input-container">
+        <label for="water-current">Consumo actual</label>
+        <input step="0.01" type="number" name="water-current" id="w-c">
+      </div>
+
+      <div class="input-container">
+        <label for="water-price">Tarifa de acueducto</label>
+        <input step="0.01" type="number" name="water-price" id="v-kwh">
+      </div>
+
+      <div class="input-container">
+        <label for="sewerage-price">Tarifa de alcantarillado</label>
+        <input step="0.01" type="number" name="sewerage-price" id="v-kwh">
+      </div>
+
+      <div class="input-container">
+        <label for="fixed-water">Cargo fijo de acueducto</label>
+        <input step="0.01" type="number" name="fixed-water" id="c-v">
+      </div>
+
+      <div class="input-container">
+        <label for="fixed-sewerage">Cargo fijo de alcantarillado</label>
+        <input step="0.01" type="number" name="fixed-sewerage" id="l-v">
+      </div>
+
+      <h1 id="water-result" hidden></h1>
+
+      <button onclick="calculateWater()" class="calculate-button">Calcular</button>
+      <button onclick="clearAll(event)" id="clear-water" class="clear-button">Borrar todo</button>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
